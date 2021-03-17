@@ -21,6 +21,10 @@
 			<input type="date" class="form-control" name="fecha" id="fecha" v-model="fecha_input" @change="calcular" />
 		</div>
 
+		<div :class="['alert', alert_type]" role="alert">
+			<strong>{{ prediction }}</strong>
+		</div>
+
 		<button type="button" @click="calcular" class="btn btn-primary btn-block">Revisar placa</button>
 	</div>
 </template>
@@ -32,16 +36,25 @@ export default {
 		return {
 			placa_input: '',
 			fecha_input: '',
+			prediction: 'Resultado',
+			alert_type: 'alert-info',
 		};
 	},
 	methods: {
 		calcular() {
 			console.log(this.placa_input);
+			if (!/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input)) {
+				this.alert_type = 'alert-danger';
+				this.prediction = 'Placa incorrecta';
+			} else {
+				this.alert_type = 'alert-success';
+				this.prediction = 'computando';
+			}
 		},
 	},
 	computed: {
 		comprobar() {
-			return !(/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input));
+			return !/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input);
 		},
 	},
 };
