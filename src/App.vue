@@ -15,6 +15,12 @@
 				@keyup.enter="calcular"
 			/>
 		</div>
+		<ul class="list-group list-group-flush text-left">
+			<li class="list-group-item">La placa debe contener 3 letras</li>
+			<li class="list-group-item">La placa debe contener 3 o 4 números</li>
+			<li class="list-group-item">La placa no debe ser menor a 6 caracteres</li>
+			<li class="list-group-item">La placa no debe ser mayor a 7 caracteres</li>
+		</ul>
 
 		<div class="form-group">
 			<label for="fecha">Fecha</label>
