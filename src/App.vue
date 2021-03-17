@@ -9,17 +9,15 @@
 				id="placa"
 				placeholder="PCA9999"
 				v-model="placa_input"
-				min="6"
-				max="7"
 				:class="{ 'is-invalid': comprobar }"
 				@keyup.enter="calcular"
 			/>
 		</div>
 		<ul class="list-group list-group-flush text-left">
-			<li class="list-group-item">La placa debe contener 3 letras</li>
+			<!-- <li class="list-group-item">La placa debe contener 3 letras</li> -->
 			<li class="list-group-item">La placa debe contener 3 o 4 números</li>
-			<li class="list-group-item">La placa no debe ser menor a 6 caracteres</li>
-			<li class="list-group-item">La placa no debe ser mayor a 7 caracteres</li>
+			<li class="list-group-item">La placa no debe ser menor a 3 caracteres</li>
+			<li class="list-group-item">La placa no debe ser mayor a 4 caracteres</li>
 		</ul>
 
 		<div class="form-group">
@@ -49,7 +47,8 @@ export default {
 	methods: {
 		calcular() {
 			console.log(this.placa_input);
-			if (!/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input)) {
+			// if (!/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input)) {
+			if (!/^[0-9]{3,4}$/.test(this.placa_input)) {
 				this.alert_type = 'alert-danger';
 				this.prediction = 'Placa incorrecta';
 			} else {
