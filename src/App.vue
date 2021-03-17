@@ -53,15 +53,34 @@ export default {
 		};
 	},
 	methods: {
+		no_circula(msg) {
+			this.alert_type = 'alert-danger';
+			this.prediction = msg;
+		},
+		circula() {
+			this.alert_type = 'alert-success';
+			this.prediction = 'Puedes circular';
+		},
+		check_time() {
+			const morning = ['07:00', '09:30'];
+			const afternoon = ['16:00', '19:30'];
+			let morning_com = this.hora_input >= morning[0] && this.hora_input <= morning[1];
+			let afternoon_com = this.hora_input >= afternoon[0] && this.hora_input <= afternoon[1];
+			if (morning_com || afternoon_com) {
+				//retorna true si esta dentro de la hora de pico y placa
+				this.no_circula('No puedes circular');
+			}
+			return;
+		},
 		calcular() {
-			console.log(this.placa_input);
+			// console.log(this.placa_input);
 			// if (!/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input)) {
 			if (!/^[0-9]{3,4}$/.test(this.placa_input)) {
-				this.alert_type = 'alert-danger';
-				this.prediction = 'Placa incorrecta';
+				this.no_circula('Placa incorrecta');
+				return;
 			} else {
-				this.alert_type = 'alert-success';
-				this.prediction = 'computando';
+				this.check_time();
+				this.circula();
 			}
 		},
 	},
