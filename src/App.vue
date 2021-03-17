@@ -7,7 +7,7 @@
 				class="form-control"
 				name="placa"
 				id="placa"
-				placeholder="PCA9999"
+				placeholder="9999"
 				v-model="placa_input"
 				:class="{ 'is-invalid': comprobar }"
 				@keyup.enter="calcular"
