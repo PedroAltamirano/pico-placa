@@ -20,9 +20,16 @@
 			<li class="list-group-item">La placa no debe ser mayor a 4 caracteres</li>
 		</ul>
 
-		<div class="form-group">
-			<label for="fecha">Fecha</label>
-			<input type="date" class="form-control" name="fecha" id="fecha" v-model="fecha_input" @change="calcular" />
+		<div class="row">
+			<div class="form-group col">
+				<label for="fecha">Fecha</label>
+				<input type="date" class="form-control" name="fecha" id="fecha" v-model="fecha_input" @change="calcular" />
+			</div>
+
+			<div class="form-group col">
+				<label for="hora">Hora</label>
+				<input type="time" class="form-control" name="hora" id="hora" v-model="hora_input" @change="calcular" />
+			</div>
 		</div>
 
 		<div :class="['alert', alert_type]" role="alert">
@@ -40,6 +47,7 @@ export default {
 		return {
 			placa_input: '',
 			fecha_input: '',
+			hora_input: '',
 			prediction: 'Resultado',
 			alert_type: 'alert-info',
 		};
@@ -59,7 +67,8 @@ export default {
 	},
 	computed: {
 		comprobar() {
-			return !/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input);
+			// return !/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input);
+			return !/^[0-9]{3,4}$/.test(this.placa_input);
 		},
 	},
 };
