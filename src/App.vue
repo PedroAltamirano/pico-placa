@@ -67,20 +67,20 @@ export default {
 			let morning_com = this.hora_input >= morning[0] && this.hora_input <= morning[1];
 			let afternoon_com = this.hora_input >= afternoon[0] && this.hora_input <= afternoon[1];
 			if (morning_com || afternoon_com) {
+				console.log(morning_com || afternoon_com);
 				//retorna true si esta dentro de la hora de pico y placa
 				this.no_circula('No puedes circular');
+			} else {
+				this.circula();
 			}
-			return;
 		},
 		calcular() {
-			// console.log(this.placa_input);
 			// if (!/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input)) {
 			if (!/^[0-9]{3,4}$/.test(this.placa_input)) {
 				this.no_circula('Placa incorrecta');
 				return;
 			} else {
 				this.check_time();
-				this.circula();
 			}
 		},
 	},
