@@ -15,7 +15,6 @@
 				@keyup.enter="calcular"
 			/>
 		</div>
-		
 
 		<div class="form-group">
 			<label for="fecha">Fecha</label>
@@ -42,9 +41,7 @@ export default {
 	},
 	computed: {
 		comprobar() {
-			return (
-				this.placa_input.length < 7 || this.placa_input.length > 7 || !(/[a-zA-Z]{3}[0-9]{4}/.test(this.placa_input))
-			);
+			return !(/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input));
 		},
 	},
 };
