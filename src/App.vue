@@ -80,9 +80,9 @@ export default {
 				this.circula();
 			}
 			let placa_par_impar = this.placa_input.slice(-1) % 2;
-			let dia_par_impar = date.getDay() % 2;
+			let dia_par_impar = (date.getDay() + 1) % 2;
 
-			if (placa_par_impar == dia_par_impar) {
+			if (placa_par_impar != dia_par_impar) {
 				this.no_circula('No puedes circular');
 			} else {
 				this.check_time();
