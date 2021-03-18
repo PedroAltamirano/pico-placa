@@ -10,7 +10,7 @@
 				placeholder="9999"
 				v-model="placa_input"
 				:class="{ 'is-invalid': comprobar }"
-				@keyup.enter="calcular"
+				@keyup="calcular"
 			/>
 		</div>
 		<ul class="list-group list-group-flush text-left">
@@ -78,7 +78,9 @@ export default {
 			let date = new Date(this.fecha_input);
 			if (date.getDay() == 6) {
 				this.circula();
+				return;
 			}
+
 			let placa_par_impar = this.placa_input.slice(-1) % 2;
 			let dia_par_impar = (date.getDay() + 1) % 2;
 
