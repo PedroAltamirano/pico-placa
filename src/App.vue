@@ -56,10 +56,12 @@ export default {
 		no_circula(msg) {
 			this.alert_type = 'alert-danger';
 			this.prediction = msg;
+			return false;
 		},
 		circula() {
 			this.alert_type = 'alert-success';
 			this.prediction = 'Puedes circular';
+			return true;
 		},
 		check_time() {
 			const morning = ['07:00', '09:30'];
@@ -69,37 +71,35 @@ export default {
 			if (morning_com || afternoon_com) {
 				console.log(morning_com || afternoon_com);
 				//retorna true si esta dentro de la hora de pico y placa
-				this.no_circula('No puedes circular');
+				return this.no_circula('No puedes circular');
 			} else {
-				this.circula();
+				return this.circula();
 			}
 		},
 		check_day() {
 			let date = new Date(this.fecha_input);
 			if (date.getDay() == 6) {
-				this.circula();
-				return;
+				return this.circula();
 			}
 
 			let placa_par_impar = this.placa_input.slice(-1) % 2;
 			let dia_par_impar = (date.getDay() + 1) % 2;
 
 			if (placa_par_impar != dia_par_impar) {
-				this.no_circula('No puedes circular');
+				return this.no_circula('No puedes circular');
 			} else {
-				this.check_time();
+				return this.check_time();
 			}
 		},
 		calcular() {
 			if (!/^[0-9]{3,4}$/.test(this.placa_input)) {
-				this.no_circula('Placa incorrecta');
-				return;
+				return this.no_circula('Placa incorrecta');
 			} else if (this.fecha_input == '') {
-				this.no_circula('Ingresa una fecha');
+				return this.no_circula('Ingresa una fecha');
 			} else if (this.hora_input == '') {
-				this.no_circula('Ingresa una hora');
+				return this.no_circula('Ingresa una hora');
 			} else {
-				this.check_day();
+				return this.check_day();
 			}
 		},
 	},
