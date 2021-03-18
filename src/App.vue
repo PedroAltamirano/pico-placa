@@ -32,7 +32,7 @@
 			</div>
 		</div>
 
-		<div :class="['alert', alert_type]" role="alert">
+		<div id="prediction_alert" :class="['alert', alert_type]" role="alert">
 			<strong>{{ prediction }}</strong>
 		</div>
 
