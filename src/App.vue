@@ -74,13 +74,30 @@ export default {
 				this.circula();
 			}
 		},
+		check_day() {
+			let date = new Date(this.fecha_input);
+			if (date.getDay() == 6) {
+				this.circula();
+			}
+			let placa_par_impar = this.placa_input.slice(-1) % 2;
+			let dia_par_impar = date.getDay() % 2;
+
+			if (placa_par_impar == dia_par_impar) {
+				this.no_circula('No puedes circular');
+			} else {
+				this.check_time();
+			}
+		},
 		calcular() {
-			// if (!/^[a-zA-Z]{3}[0-9]{3,4}$/.test(this.placa_input)) {
 			if (!/^[0-9]{3,4}$/.test(this.placa_input)) {
 				this.no_circula('Placa incorrecta');
 				return;
+			} else if (this.fecha_input == '') {
+				this.no_circula('Ingresa una fecha');
+			} else if (this.hora_input == '') {
+				this.no_circula('Ingresa una hora');
 			} else {
-				this.check_time();
+				this.check_day();
 			}
 		},
 	},
